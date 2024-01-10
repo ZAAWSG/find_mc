@@ -1,0 +1,11 @@
+.card {
+    flex: 0 3 calc(30% - 10px);
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+
+    border: #00000f 1px solid;
+    border-radius: 10px;
+
+    margin: 10px;
+}

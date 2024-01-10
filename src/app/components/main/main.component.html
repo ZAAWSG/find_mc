@@ -1,0 +1,4 @@
+<div class="main__content">
+    <app-search-bar (tracksEmitter)="receiveTrackData($event)" class="search__form"></app-search-bar>
+    <app-track-list class="track__list" [tracks]="tracks"></app-track-list>
+</div>
