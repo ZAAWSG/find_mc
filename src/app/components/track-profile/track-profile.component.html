@@ -1,0 +1,30 @@
+<div *ngIf="track" class="wrapper">
+    <div class="info">
+        <img class="poster" src={{track.album.images[0].url}} alt="" />
+        <p class="title">{{track.name}}
+        <a 
+            class="artists"
+            *ngFor="let artist of track.artists"
+            href={{artist.external_urls.spotify}}>
+            {{artist.name}}
+        </a>
+        </p>
+        <p class="duration">{{track.duration_ms | msToTime}}
+        </p>
+    </div>
+    <div class="play__section">
+        <audio 
+            *ngIf="track.preview_url else elseAudio" 
+            class="player" 
+            src={{track.preview_url}} 
+            controls>
+        </audio>
+        <button class="link__button">
+            <a class="link__spoty" href={{track.external_urls.spotify}}>
+                Play on Spoty
+            </a>
+        </button>
+    </div>
+</div>
+
+<ng-template class="player" #elseAudio>This soundtrack is not available in your country</ng-template>

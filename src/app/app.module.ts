@@ -11,6 +11,8 @@ import { TrackDetailsComponent } from './components/track-details/track-details.
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { TrackListComponent } from './components/track-list/track-list.component';
 import { MsToTimePipe } from './pipes/ms-to-time.pipe';
+import { TrackProfileComponent } from './components/track-profile/track-profile.component';
+import { ErrorHandleInterceptor } from './interceptors/error-handle.interceptor';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { MsToTimePipe } from './pipes/ms-to-time.pipe';
     MainComponent,
     TrackDetailsComponent,
     TrackListComponent,
-    MsToTimePipe
+    MsToTimePipe,
+    TrackProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { MsToTimePipe } from './pipes/ms-to-time.pipe';
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
+      useClass: ErrorHandleInterceptor,
       multi: true
     }
   ],

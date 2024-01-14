@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Observable, catchError, map } from 'rxjs';
 import { AuthResponse } from '../models/authResponse';
+import { TracksResponse } from '../models/tracksResponse';
 import { TrackResponse } from '../models/trackResponse';
+
 
 @Injectable({
   providedIn: 'root',
@@ -12,28 +14,16 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient ) {}
 
-  getOne() {
-
+  getOne(url: string): Observable<TracksResponse> {
+    return this.httpClient.get<TracksResponse>(url);
   }
 
-  getAll() {
-    
+  searchByTitle(text: string): Observable<TracksResponse> {
+    return this.httpClient.get<TracksResponse>(`${environment.API_URL}/search?q=${text}&type=track&limit=10`)
   }
 
-  getListByAuthor() {
-
-  }
-
-  searchByTitle(text: string): Observable<TrackResponse> {
-    return this.httpClient.get<TrackResponse>(`${environment.API_URL}/search?q=${text}&type=track`)
-  }
-
-  getListByGenre() {
-
-  }
-
-  getSimilarList() {
-
+  getOneTrack(id: string) {
+    return this.httpClient.get<TrackResponse>(`${environment.API_URL}/tracks/${id}`);
   }
 
   getAuthToken() {

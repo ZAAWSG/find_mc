@@ -12,12 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MainComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
-  tracks: Track[] = [];
+  apiUrl!: string;
   
   constructor(private authService: AuthService) {}
 
-  receiveTrackData(tracks: Track[]) {
-    this.tracks = tracks;
+  receiveTrackData(apiUrl: string) {
+    this.apiUrl = apiUrl;
   }
 
   ngOnInit(): void {

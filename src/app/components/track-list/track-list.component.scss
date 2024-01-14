@@ -1,11 +1,21 @@
+.wrapper {
+    border: 1px solid #000000;
+}
+
 .card {
     flex: 0 3 calc(30% - 10px);
     display: flex;
     flex-direction: column;
-    width: 30%;
 
     border: #00000f 1px solid;
     border-radius: 10px;
 
     margin: 10px;
+}
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

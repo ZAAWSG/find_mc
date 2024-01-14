@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
-import { Track } from 'src/app/models/track';
 import { TracksService } from 'src/app/services/tracks.service';
 
 @Component({
@@ -10,10 +9,12 @@ import { TracksService } from 'src/app/services/tracks.service';
   styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent implements OnDestroy{
-  @Output() tracksEmitter = new EventEmitter<Track[]>();
+  @Output() tracksEmitter = new EventEmitter<string>();
+
   searchForm = new FormGroup(
     {searchRequest: new FormControl('')}
   )
+
   private destroy$ = new Subject<string>();
 
   constructor(private tracksService: TracksService) {
@@ -30,11 +31,14 @@ export class SearchBarComponent implements OnDestroy{
 
 
   search(text: string | null) {
-    if (text === null) return;
+    if (text === null || text === "") return;
 
-    this.tracksService.searchByText(text)
-    .subscribe(tracks => {
-      this.tracksEmitter.emit(tracks);
+    this.tracksService.getApiUrlBySearchText(text)
+    .pipe(
+      takeUntil(this.destroy$)
+    )
+    .subscribe(url => {
+      this.tracksEmitter.emit(url);
     });
   }
 

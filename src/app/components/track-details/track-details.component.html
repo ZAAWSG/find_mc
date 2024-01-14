@@ -1,17 +1,23 @@
 <div class="card">
-    <p 
-        class="title">{{trackItem.name || "Adicto (with Anuel AA & Ozuna)"}}
-    </p>
-    <p 
-        class="duration">{{trackItem.duration | msToTime}}
-    </p>
     <img 
         class="poster"
         src={{trackItem.image_url}} 
         alt=""
     />
+    <div class="description">
+        <a 
+            [routerLink]="['/tracks', trackItem.id]"
+            class="title">
+            {{trackItem.name}}
+        </a>
+        <p 
+            class="duration">
+            {{trackItem.duration | msToTime}}
+        </p>
+    </div>
     <button class="link__button">
-        <a class="link" href={{trackItem.spotify_url}}>
+        <a class="link__spoty" 
+            href={{trackItem.spotify_url}}>
             Play on Spoty
         </a>
     </button>

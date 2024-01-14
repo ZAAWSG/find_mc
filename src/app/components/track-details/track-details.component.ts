@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Track } from 'src/app/models/track';
 
 @Component({
@@ -8,6 +8,5 @@ import { Track } from 'src/app/models/track';
 })
 export class TrackDetailsComponent {
   @Input() trackItem!: Track;
-
   
 }
